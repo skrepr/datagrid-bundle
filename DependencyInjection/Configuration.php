@@ -17,12 +17,11 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('abbert_datagrid');
-
+        $treeBuilder = new TreeBuilder('skrepr_datagrid');
         $dir = dirname(__FILE__);
 
-        $rootNode
+        $treeBuilder
+            ->getRootNode()
             ->children()
             ->arrayNode('view')
             ->addDefaultsIfNotSet()
