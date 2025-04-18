@@ -5,6 +5,7 @@ services:
         arguments:
             - 'collectie met grids'
             - '@service_container'
+            - '@security.csrf.token_manager'
             - '%skrepr_datagrid.view.path%'
             - '@doctrine.orm.entity_manager'
 

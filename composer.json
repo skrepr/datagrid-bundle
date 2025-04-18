@@ -7,8 +7,14 @@
             "email": "albert@skrepr.com"
         }
     ],
+    "repositories": {
+        "skrepr/datagrid": {
+            "type": "vcs",
+            "url": "git@github.com:skrepr/datagrid.git"
+        }
+    },
     "require": {
-        "skrepr/datagrid": "^1.2.0"
+        "skrepr/datagrid": "dev-master"
     },
     "autoload": {
         "psr-4": { "Skrepr\\DatagridBundle\\": "" }

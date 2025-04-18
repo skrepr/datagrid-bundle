@@ -5,6 +5,7 @@ use Skrepr\Datagrid\Datasource\DoctrineSource;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class Datagrid
 {
@@ -23,10 +24,13 @@ class Datagrid
      */
     private $viewPath;
 
-    public function __construct($serviceIds, ContainerInterface $container, $viewPath, EntityManager $entityManager)
+    private $tokenManager;
+
+    public function __construct($serviceIds, ContainerInterface $container, CsrfTokenManagerInterface $tokenManager,  $viewPath, EntityManager $entityManager)
     {
         $this->serviceIds = $serviceIds;
         $this->container = $container;
+        $this->tokenManager = $tokenManager;
         $this->viewPath = $viewPath;
         $this->entityManager = $entityManager;
     }
@@ -65,7 +69,9 @@ class Datagrid
             }
         } else {
             // normale class, hier worden dependencies ondersteund
-            $deps = [];
+            $deps = [
+                $this->tokenManager
+            ];
             if ($annotationDatagrid !== null && count($annotationDatagrid->dependencies)) {
                 foreach ($annotationDatagrid->dependencies as $dep) {
                     if (strstr($dep, '@')) {
