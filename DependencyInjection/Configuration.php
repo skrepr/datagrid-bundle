@@ -29,6 +29,6 @@ class Configuration implements ConfigurationInterface
             ->end() // view
             ->end();
 
-        return $tb;
+        return $treeBuilder;
     }
 }
