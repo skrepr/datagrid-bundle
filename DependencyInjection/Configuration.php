@@ -14,8 +14,11 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $tb = new TreeBuilder('skrepr_datagrid');
-        $rootNode = $tb->getRootNode();
+        $treeBuilder = new TreeBuilder('skrepr_datagrid');
+        $rootNode = $treeBuilder->getRootNode();
+
+        $dir = dirname(__FILE__);
+
         $rootNode
             ->children()
             ->arrayNode('view')
